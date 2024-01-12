@@ -25,4 +25,5 @@ Route::get('/', [AppController::class, 'index'])->name('index');
 Route::resource('accounts', AccountController::class);
 Route::resource('transaction', TransactionController::class);
 
-Route::fallback(function () {return view('error');});
+Route::fallback(function () {return view('error');
+});
