@@ -32,7 +32,7 @@ class AccountController extends Controller
        public function edit($id)
     {
         $account = Account::find($id);
-        return view('accounts.edit', compact('account'));
+        return view('accounts.edit', compact('accounts'));
     }
     public function update(Request $request, $id)
     {
@@ -52,13 +52,13 @@ class AccountController extends Controller
         $isUsedInTransactions = DB::table('transactions')->where('account_id', $id)->exists();
 
     if ($isUsedInTransactions) {
-        return redirect()->route('accounts.index')->with('error', 'Akun tidak dapat dihapus karena sudah digunakan dalam transaksi.');
+        return redirect()->route('accounts.index')->with('error!');
     }
 
     $account = Account::find($id);
     $account->delete();
 
-    return redirect()->route('accounts.index')->with('success', 'Akun berhasil dihapus!');
+    return redirect()->route('accounts.index')->with('Akun Anda berhasil dihapus!');
     }
 
     public function show($id)
